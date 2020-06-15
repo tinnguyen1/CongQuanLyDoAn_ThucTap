@@ -1,0 +1,128 @@
+﻿@model Model.EF.Nhom_DA_TT
+
+@{
+    ViewBag.Title = "Xem";
+    Layout = "~/Areas/Khoa/Views/Shared/_Layout.cshtml";
+    var listsv = (List<Model.EF.Ct_Nhom>)ViewBag.sinhvien;
+}
+
+@section header{
+    Thông tin nhóm
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Nhom_DA_TT</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaNhom)
+
+        <div class="form-inline">
+            @Html.LabelFor(model => model.TenNhom, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenNhom, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenNhom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-inline">
+            @Html.LabelFor(model => model.MaGV, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.MaGV, null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaGV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-inline">
+            @Html.LabelFor(model => model.MaLoaiDA, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.MaLoaiDA, null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaLoaiDA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        <div>
+            <div>
+                <h4 style="text-align:center;color:blue">Danh sách sinh viên có trong nhóm</h4>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                        Mã sinh viên
+                    </th>
+                    <th>
+                        Họ và tên
+                    </th>
+                    <th>
+                        Ngày sinh
+                    </th>
+                    <th>
+                        Giới tính
+                    </th>
+                    <th>
+                        Địa chỉ
+                    </th>
+                    <th>
+                        Số điện thoại
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                </tr>
+
+                @foreach (var item in listsv)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SinhVien.MaSV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SinhVien.TenSV)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SinhVien.NgaySinh)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SinhVien.GioiTinh)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SinhVien.DiaChi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SinhVien.SDT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SinhVien.Email)
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
+
+        <div class="form-group">
+            <button style="background-color:deepskyblue"><a href="/Khoa/PhanNhom/index" style="color:orangered">Trở lại</a></button>
+        </div>
+    </div>
+}
+<style>
+
+    .form-inline{
+    margin-bottom:10px;
+    }
+    table tr td {
+        color: black;
+    }
+    #TenNhom {
+        width:45%;
+    }
+    table tr th {
+        background-color: dodgerblue;
+        color: white;
+    }
+</style>
+
+

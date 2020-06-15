@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Model.EF.Ct_Nhom>
+
+@{
+    ViewBag.Title = "EditSV_Nhom";
+    Layout = "~/Areas/Khoa/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Sinh viên trong nhóm
+}
+
+<p>
+    @Html.ActionLink("Thêm sinh viên", "Them_SV_Nhom")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            Mã sinh viên
+        </th>
+        <th>
+            Họ và tên
+        </th>
+        <th>
+            Ngày sinh
+        </th>
+        <th>
+            Giới tính
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="display:none">@Html.DisplayFor(modelItem => item.Stt)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SinhVien.MaSV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SinhVien.TenSV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SinhVien.NgaySinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SinhVien.GioiTinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SinhVien.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SinhVien.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SinhVien.Email)
+            </td>
+            <td>
+                @Ajax.ActionLink("Xóa", "Delete", new { @id = item.MaSV }, new AjaxOptions
+               {
+                   Confirm = "Bạn có muốn xóa sinh viên này ra khỏi nhóm?",
+                   OnComplete = "$('#row_" + @item.MaSV + "').remove()",
+                   HttpMethod = "Delete"
+               })
+            </td>
+        </tr>
+    }
+
+</table>
+<a href="/Khoa/PhanNhom/index"><button style="background-color:crimson; color:azure">Kết thúc</button></a>
+<style>
+
+    table tr td {
+        color: black;
+    }
+
+    table tr th {
+        background-color: dodgerblue;
+        color: white;
+    }
+</style>

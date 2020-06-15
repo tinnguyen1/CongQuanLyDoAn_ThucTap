@@ -1,0 +1,94 @@
+﻿@model Model.EF.ThongTinNhom
+
+@{
+    ViewBag.Title = "ThongTinNhomDoAn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h5 style="text-decoration:underline;color:blue; margin-left:10%">Thành viên trong nhóm</h5>
+    <hr />
+</div>
+
+
+<div style="text-align:center">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group" style="display:none">
+                @Html.LabelFor(model => model.NguoiDangKy, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.NguoiDangKy, new { @class = "form-control", @Value = @Session["MaSV"] })
+                    @Html.ValidationMessageFor(model => model.NguoiDangKy, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <table style="width:100%" class="table">
+                <tr>
+                    <th>
+                        <label>
+                            Người đăng ký là :
+                        </label>
+                    </th>
+                    <td>
+                        @Session["TenSV"]
+                    </td>
+                    <th>
+                        <label> Số thành viên: </label>
+                    </th>
+                    <td>
+                        <input checked="checked" id="SoLuongThanhVien" name="SoLuongThanhVien" type="radio" value="1" /> Một &nbsp;
+                        <input id="SoLuongThanhVien" name="SoLuongThanhVien" type="radio" value="2" /> Hai &nbsp;
+                        <input id="SoLuongThanhVien" name="SoLuongThanhVien" type="radio" value="3" /> Ba
+                    </td>
+                </tr>
+
+                <tr>
+                    <th>
+                        <label for="ThanhVien2"> Mã Số thành viên thứ 2 </label>
+                    </th>
+                    <td class="hai">
+                        <input type="text" id="ThanhVien2" name="ThanhVien2" placeholder="Điền mã sinh viên thứ 2" />
+                    </td>
+                    <th>
+                        <label for="ThanhVien3"> Mã số thành viên thứ 3 </label>
+                    </th>
+                    <td class="hai">
+                        <input type="text" id="ThanhVien3" name="ThanhVien3" placeholder="Điền mã sinh viên thứ 3" />
+                    </td>
+                </tr>
+            </table>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Hoàn Thành" id="submit" class="btn btn-danger" />
+                </div>
+            </div>
+
+            @*@if (ViewBag.Messager != null)
+                {
+                    <script type="text/javascript">
+                        window.onload = function () {
+                            alert("@ViewBag.Messager");
+                        };
+                    </script>
+                }*@
+        </div>
+    }
+</div>
+
+<style>
+    .table tr {
+        border-top: hidden;
+    }
+
+    th label {
+        text-align: right;
+    }
+</style>

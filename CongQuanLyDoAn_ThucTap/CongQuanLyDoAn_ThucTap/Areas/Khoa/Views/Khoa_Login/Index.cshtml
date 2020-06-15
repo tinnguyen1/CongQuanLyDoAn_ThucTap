@@ -1,0 +1,77 @@
+﻿@model CongQuanLyDoAn_ThucTap.Areas.Khoa.Models.Khoa_LoginModel
+{
+@{
+    ViewBag.Tittle = "Đăng nhập | Khoa";
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html lang="zxx">
+
+<head>
+    <title>@ViewBag.Tittle</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!-- Meta tag Keywords -->
+    <!-- css files -->
+    <link rel="stylesheet" href="/Assets/DangNhap/Khoa/css/style.css" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <link href="/Assets/DangNhap/Khoa/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <!-- //css files -->
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+          rel="stylesheet">
+    <!-- //web-fonts -->
+</head>
+
+<body>
+    <div class="main-bg">
+        <!-- title -->
+        <h1>Đăng nhập | Khoa</h1>
+        <!-- //title -->
+        <!-- content -->
+        <div class="sub-main-w3">
+            <div class="bg-content-w3pvt">
+                <div class="top-content-style">
+                    <img src="/Assets/DangNhap/Khoa/images/user.jpg" alt="" />
+                </div>
+                @using (Html.BeginForm("Login", "Khoa_Login", FormMethod.Post))
+                {
+                    <div style="color:red;margin:auto">
+                        @Html.ValidationSummary(false, "", "error")
+                    </div>
+
+                    <p class="legend">Login Here<span class="fa fa-hand-o-down"></span></p>
+                    <div class="input">
+
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @autofocus = "autofocus" })
+                        <span class="fa fa-envelope"></span>
+                    </div>
+                    <div class="input">
+
+                        @Html.PasswordFor(model => model.Matkhau, new { @class = "form-control" })
+                        <span class="fa fa-unlock"></span>
+                    </div>
+                    <button type="submit" class="btn submit">
+                        <span class="fa fa-sign-in"></span>
+                    </button>
+                }
+
+            </div>
+        </div>
+        <!-- //content -->
+    </div>
+</body>
+
+</html>

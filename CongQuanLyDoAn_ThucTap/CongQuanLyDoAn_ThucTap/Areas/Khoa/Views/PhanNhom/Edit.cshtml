@@ -1,0 +1,68 @@
+﻿@model Model.EF.Nhom_DA_TT
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Khoa/Views/Shared/_Layout.cshtml";
+    var listgv = (List<Model.EF.GiangVien>)ViewBag.listg;
+}
+
+@section header{
+    Sửa thông tin nhóm
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Thông tin cần Cập nhật</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaNhom)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaSV, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaSV, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaSV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaLoaiDA, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.MaLoaiDA, null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaLoaiDA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <table class="table" style="max-height:50px">
+            <tr>
+                <th></th>
+                <th>Mã giảng viên</th>
+                <th>Tên giảng viên</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+            </tr>
+            @foreach (var item in listgv)
+            {
+                <tr>
+                    <td><input type="radio" id="MaGV" name="MaGV" value=@item.MaGV><br></td>
+                    <td>@item.MaGV</td>
+                    <td>@item.TenGV</td>
+                    <td>@item.Email</td>
+                    <td>@item.SDT</td>
+                </tr>
+            }
+        </table>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Danh sách sinh viên" class="btn btn-danger btn-icon-split" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở lại trang danh sách nhóm", "Index")
+</div>

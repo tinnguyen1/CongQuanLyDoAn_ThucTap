@@ -1,0 +1,96 @@
+﻿@model Model.EF.GiangVien
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Giangvien/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#NgaySinh").datepicker();
+        });
+    </script>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Cập nhật thông tin giảng viên</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaGV)
+
+    <table style="width:100%" class="table">
+        <tr>
+            <td>
+                <label for="TenGV"> Tên giảng viên: </label>
+            </td>
+            <td>
+                @Html.EditorFor(model => model.TenGV, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenGV, "", new { @class = "text-danger" })
+            </td>
+
+            <td>
+                <label for="NgaySinh">Ngày sinh:</label>
+            </td>
+            <td>
+                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+            </td>
+
+            <td>
+                <label> Giới tính:</label>
+            </td>
+            <td>
+                Nam @Html.RadioButton("GioiTinh", "Nam") &nbsp;
+                Nữ @Html.RadioButton("GioiTinh", "Nu") &nbsp;
+                khác @Html.RadioButton("GioiTinh", "khac")
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <label for="DiaChi">Địa chỉ: </label>
+            </td>
+            <td>
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+            </td>
+
+            <td>
+                <label for="SDT"> Số điện thoại: </label>
+            </td>
+            <td>
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+            </td>
+
+            <td>
+                <label for="Email">Email:</label>
+            </td>
+            <td>
+                <input type="text" id="Email" name="Email" value="@Session["Email"]" readonly class="form-control" />
+            </td>
+
+        </tr>
+    </table>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="text-align:center ">
+                <input type="submit" value="Cập nhật" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+    .table tr {
+        border-top: hidden;
+    }
+</style>

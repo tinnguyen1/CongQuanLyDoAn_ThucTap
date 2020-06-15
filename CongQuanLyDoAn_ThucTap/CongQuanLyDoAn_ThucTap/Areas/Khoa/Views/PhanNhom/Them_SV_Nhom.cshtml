@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Model.BaoCaoOnlineViewModel.sinhvienview>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Khoa/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Thêm sinh viên vào nhóm
+}
+
+<div>
+
+    <div style="margin:2% 0"><h3>Danh sách sinh viên có thể thêm vào nhóm</h3></div>
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Mã sinh viên
+            </th>
+            <th>
+                Họ và tên
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th>
+                Giới tính
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Email
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="row_@item.MaSV" class="tin">
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaSV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioiTinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Thêm", "ThemSinhVienVaoNhom", new { id = item.MaSV })
+                </td>
+            </tr>
+        }
+    </table>
+    <hr />
+    <a href="/Khoa/PhanNhom/EditSV_Nhom"><button style="background-color:lightblue; color:black">Chọn xong</button></a>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#myInput").on("keyup", function () {
+            var txtsearch = $(this).val();
+            $("table tr").each(function (result) {
+                if (result !== 0) {
+                    var id = $(this).find("td:nth-child(2)").text();
+                    if (id.indexOf(txtsearch) !== 0 && id.toLowerCase().indexOf(txtsearch.toLowerCase()) < 0) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                }
+            });
+        });
+    </script>
+
+</div>
+
+
+<style>
+    .pagination-container .pagination li a {
+        margin-right: 20px;
+    }
+
+    table tr td {
+        color: black;
+    }
+
+    table tr th {
+        background-color: dodgerblue;
+        color: white;
+    }
+</style>
+

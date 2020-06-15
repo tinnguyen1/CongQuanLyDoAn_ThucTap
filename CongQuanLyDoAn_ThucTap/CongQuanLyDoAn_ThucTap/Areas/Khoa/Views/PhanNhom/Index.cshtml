@@ -1,0 +1,97 @@
+﻿@model PagedList.IPagedList<Model.EF.Nhom_DA_TT>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Khoa/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Danh sách nhóm đồ án
+}
+
+<div>
+    <p>
+        <strong>@Html.ActionLink("Thêm mới", "ThemMoi")</strong>
+    </p>
+    @using (Html.BeginForm("Index", "PhanNhom", FormMethod.Get))
+    {
+        <div class="row form-group">
+            <div class="col-lg-12">
+                <div class="col-md-4">
+                    <input type="text" value="@ViewBag.SearchString" class="form-control" placeholder="Tên sinh viên hoặc giảng viên" name="searchString" />
+                    <button type="submit" class="btn btn-success">Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    }
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Mã sinh viên
+            </th>
+            <th>
+                Sinh viên
+            </th>
+            <th>
+                Lớp
+            </th>
+            <th>
+                Giảng Viên
+            </th>
+            <th>
+                Đồ án
+            </th>
+            <th>
+                Ngày lập
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="row_@item.MaNhom">
+                <td>
+                    @Html.DisplayFor(modelItem => item.SinhVien.MaSV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SinhVien.TenSV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SinhVien.Lop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GiangVien.TenGV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoaiDA.TenLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayPhanNhom)
+                </td>
+                <td>
+                    <a href="/Khoa/PhanNhom/Edit/@item.MaNhom">Sửa</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<label>
+    Trang số: @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+</label>
+
+<style>
+    .pagination-container .pagination li a {
+        margin-right: 20px;
+    }
+
+    table tr td {
+        color: black;
+    }
+
+    table tr th {
+        background-color: dodgerblue;
+        color: white;
+    }
+</style>

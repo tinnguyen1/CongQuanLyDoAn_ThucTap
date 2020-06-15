@@ -1,0 +1,65 @@
+﻿@model Model.EF.GiangVien
+
+@{
+    ViewBag.Title = "DoiMatKhau";
+    Layout = "~/Areas/Giangvien/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Đổi mật khẩu</h3>
+<hr />
+
+<div style="text-align:center">
+    @using (Html.BeginForm("DoiMatKhau", "TaiKhoan", FormMethod.Post))
+    {
+        <div style="color:red;margin:auto">
+            @Html.ValidationSummary(true, "", "error")
+        </div>
+
+        <table class="table">
+            <tr>
+                <td></td>
+                <td class="mot"><i class="fa fa-user" aria-hidden="true"></i><span style="margin-right:18px"> Email: </span></td>
+                <td><input type="text" id="Email" name="Email" value="@Session["Email"]" readonly class="form-control" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="mot"><i class="fa fa-envelope" aria-hidden="true"></i> Mật khẩu mới:</td>
+                <td>@Html.PasswordFor(model => model.Matkhau, new { @class = "form-control" })</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="mot"><i class="fa fa-envelope" aria-hidden="true"></i> Mật khẩu mới:</td>
+                <td><input type="password" id="nhaplai" name="nhaplai" class="form-control" /></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td><input type="submit" value="Hoàn thành" class="btn btn-danger" /></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+
+            </div>
+        </div>
+    }
+</div>
+<style>
+    .table tr td {
+        border-top: none;
+    }
+
+    .table tr td {
+        width: 5%;
+    }
+
+    .mot {
+        text-align: right;
+    }
+</style>

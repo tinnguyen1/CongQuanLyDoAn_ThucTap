@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Model.EF.GiangVien>
+
+@{
+    ViewBag.Title = "ThongTinCaNhan";
+    Layout = "~/Areas/Giangvien/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            Mã giảng viên
+        </th>
+        <th>
+            Tên Giảng Viên
+        </th>
+        <th>
+            Ngày sinh
+        </th>
+        <th>
+            Giới tính
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaGV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenGV)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgaySinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GioiTinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+            <td>
+                @Html.ActionLink("Cập nhật", "Edit", new { id = item.MaGV })
+            </td>
+        </tr>
+    }
+
+</table>
+<style>
+    .table tr th {
+        background-color: dodgerblue;
+    }
+</style>

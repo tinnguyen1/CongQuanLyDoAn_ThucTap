@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "DangKyDeTai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var list = (List<Model.EF.ThongTinNhom>)ViewBag.thongtin;
+}
+
+<div>
+    <h5 style="text-decoration:underline;color:blue; margin-left:10%">Đăng ký đề tài</h5>
+    <hr />
+</div>
+
+<div style="text-align:center">
+    <ul style="list-style-type:none">
+        <li><a href="/DoAn_ThucTap/DangKyDeTaiDoAn">Đăng ký đề tài đồ án</a></li>
+        <li><a href="#">Đăng ký đề tài Thực tập</a></li>
+    </ul>
+</div>
+@if (list.Count > 0)
+{
+    <div>
+        <table class="table">
+            <tr>
+                <th>Đồ án</th>
+                <th>tên đề tài</th>
+                <th>Ngày đăng ký</th>
+                <th>Người đăng ký</th>
+                <th></th>
+            </tr>
+            @foreach(var item in list)
+            {
+                <tr>
+                    <td>@item.Bang_DK_DeTai.LoaiDA.TenLoai</td>
+                    <td>@item.Bang_DK_DeTai.TenDeTai</td>
+                    <td>@item.Bang_DK_DeTai.NgayDK</td>
+                    <td>@item.NguoiDangKy</td>
+                    <td>Xem | Sửa</td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+
+
+<style>
+    ul li {
+        margin: 12px 0;
+        font: bold;
+        font-size: 20px;
+    }
+</style>

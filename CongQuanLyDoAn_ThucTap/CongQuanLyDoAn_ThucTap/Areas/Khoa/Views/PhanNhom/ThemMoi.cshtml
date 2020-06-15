@@ -1,0 +1,80 @@
+﻿@model Model.EF.Nhom_DA_TT
+
+@{
+    ViewBag.Title = "ThemMoi";
+    Layout = "~/Areas/Khoa/Views/Shared/_Layout.cshtml";
+    var listgv = (List<Model.EF.GiangVien>)ViewBag.listgv;
+}
+
+
+@section header{
+    Thêm mới nhóm đồ án - thực tập
+}
+
+@using (Html.BeginForm("ThemMoi", "PhanNhom", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Nhập thông tin</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label>Mã sinh viên: </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaSV, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaSV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Chọn loại đồ án</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.MaLoaiDA, null, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaLoaiDA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        <label>Chọn giảng viên hướng dẫn</label>
+        <table class="table" style="max-height:50px">
+            <tr>
+                <th></th>
+                <th>Mã giảng viên</th>
+                <th>Tên giảng viên</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+            </tr>
+            @foreach (var item in listgv)
+            {
+                <tr>
+                    <td><input type="radio" id="MaGV" name="MaGV" value=@item.MaGV><br></td>
+                    <td>@item.MaGV</td>
+                    <td>@item.TenGV</td>
+                    <td>@item.Email</td>
+                    <td>@item.SDT</td>
+                </tr>
+            }
+        </table>
+
+
+
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Hoàn tất" class="btn btn-danger btn-icon-split" />
+            </div>
+        </div>
+    </div>
+
+    <a href="/Khoa/PhanNhom/Index">Trở lại</a>
+}
+
+<style>
+    .table tr th{
+        background-color:deepskyblue;
+        color:black;
+    }
+</style>

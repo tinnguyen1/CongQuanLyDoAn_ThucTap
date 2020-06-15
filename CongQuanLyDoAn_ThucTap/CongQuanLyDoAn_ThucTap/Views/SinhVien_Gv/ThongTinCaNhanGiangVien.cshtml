@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Model.EF.Nhom_DA_TT>
+
+@{
+    ViewBag.Title = "ThongTinCaNhanGiangVien";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+<h3>Thông tin giảng viên hướng dẫn</h3>
+<hr />
+
+<table class="table">
+    <tr>
+        <th>
+            Đồ án
+        </th>
+        <th>
+            Tên giảng viên
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Ngày Bắt đầu
+        </th>
+        <th>
+            Ngày Kết thúc
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiDA.TenLoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiangVien.TenGV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiangVien.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GiangVien.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayPhanNhom)
+        </td>
+        <td>
+            @if (item.MaLoaiDA == 1)
+            {
+                @ViewBag.ngaykt1
+            }
+            else
+            {
+                if (item.MaLoaiDA == 2)
+                {
+                    @ViewBag.ngaykt2
+                }
+                {
+                    if (item.MaLoaiDA == 3)
+                    {
+                        @ViewBag.ngaykt3
+                    }
+                    else
+                    {
+                        @ViewBag.ngaykt4
+                    }
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>

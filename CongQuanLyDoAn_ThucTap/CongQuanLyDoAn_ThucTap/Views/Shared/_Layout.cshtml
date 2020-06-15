@@ -1,0 +1,198 @@
+﻿<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Montana</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="/Assets/SinhVien/img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <!-- CSS here -->
+    <link rel="stylesheet" href="/Assets/SinhVien/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Assets/SinhVien/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/Assets/SinhVien/css/magnific-popup.css">
+    <link rel="stylesheet" href="/Assets/SinhVien/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/Assets/SinhVien/css/themify-icons.css">
+    <link rel="stylesheet" href="/Assets/SinhVien/css/nice-select.css">
+    <link rel="stylesheet" href="/Assets/SinhVien/css/flaticon.css">
+    <link rel="stylesheet" href="/Assets/SinhVien/css/gijgo.css">
+    <link rel="stylesheet" href="/Assets/SinhVien/css/animate.css">
+    <link rel="stylesheet" href="/Assets/SinhVien/css/slicknav.css">
+    <link rel="stylesheet" href="/Assets/SinhVien/css/style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+</head>
+
+<body>
+    <!-- header-start -->
+    <header>
+        <div class="header-area " style="background-color:black">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-5 col-lg-6">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a class="active" href="/Home/index">Trang chủ</a></li>
+                                        <li>
+                                            <a href="#">Giảng viên <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="/SinhVien_Gv/ThongTinCaNhanGiangVien">Giảng Viên hướng dẫn</a></li>
+                                                <li><a href="#">Thông báo</a></li>
+                                                <li><a href="#">Liên hệ giảng viên</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Đồ án - Thực tập <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="/DoAn_ThucTap/DangKyDeTai">Đăng ký đề tài</a></li>
+                                                <li><a href="portfolio-3cols.html">Báo cáo tiến độ</a></li>
+                                                <li><a href="portfolio-detail.html">Xem điểm đề tài</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Tài Khoản <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                                <li><a href="/SVTaiKhoan/ThongTinCaNhan">Thông tin cá nhân</a></li>
+                                                <li><a href="/SVTaiKhoan/DoiMatKhau">Đổi mật khẩu</a></li>
+                                                <hr />
+                                                <li><a href="@Url.Action("LogOut","Login")">Đăng Xuất</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo-img">
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-4 d-none d-lg-block">
+                            <div class="book_room">
+                                <div class="socail_links">
+                                    <span style="color:white">Xin chào:</span>
+                                    <Span style="color:white">@Session["TenSV"]</Span>
+                                    <p style="display:none">@Session["MaSV"] @Session["Email"]</p>
+                                </div>
+                                <div class="book_btn d-none d-lg-block">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <div style="margin:9% 5%; min-height:300px">
+        @if (TempData["AlertMessage"] != null)
+        {
+        <div id="Thongbao" class="alert @TempData["AlertType"]  hide" style="text-align:center">
+            <strong>@TempData["AlertMessage"]</strong>
+        </div>
+        }
+
+        @RenderBody()
+    </div>
+
+    
+    <!-- footer -->
+    <footer class="footer">
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-8 col-md-7 col-lg-9">
+                        <p class="copy_right">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                    <div class="col-xl-4 col-md-5 col-lg-3">
+                        <div class="socail_links">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-facebook-square"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- link that opens popup -->
+    <!-- JS here -->
+    <script src="/Assets/SinhVien/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="/Assets/SinhVien/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/Assets/SinhVien/js/popper.min.js"></script>
+    <script src="/Assets/SinhVien/js/bootstrap.min.js"></script>
+    <script src="/Assets/SinhVien/js/owl.carousel.min.js"></script>
+    <script src="/Assets/SinhVien/js/isotope.pkgd.min.js"></script>
+    <script src="/Assets/SinhVien/js/ajax-form.js"></script>
+    <script src="/Assets/SinhVien/js/waypoints.min.js"></script>
+    <script src="/Assets/SinhVien/js/jquery.counterup.min.js"></script>
+    <script src="/Assets/SinhVien/js/imagesloaded.pkgd.min.js"></script>
+    <script src="/Assets/SinhVien/js/scrollIt.js"></script>
+    <script src="/Assets/SinhVien/js/jquery.scrollUp.min.js"></script>
+    <script src="/Assets/SinhVien/js/wow.min.js"></script>
+    <script src="/Assets/SinhVien/js/nice-select.min.js"></script>
+    <script src="/Assets/SinhVien/js/jquery.slicknav.min.js"></script>
+    <script src="/Assets/SinhVien/js/jquery.magnific-popup.min.js"></script>
+    <script src="/Assets/SinhVien/js/plugins.js"></script>
+    <script src="/Assets/SinhVien/js/gijgo.min.js"></script>
+
+    <!--contact js-->
+    <script src="/Assets/SinhVien/js/contact.js"></script>
+    <script src="/Assets/SinhVien/js/jquery.ajaxchimp.min.js"></script>
+    <script src="/Assets/SinhVien/js/jquery.form.js"></script>
+    <script src="/Assets/SinhVien/js/jquery.validate.min.js"></script>
+    <script src="/Assets/SinhVien/js/mail-script.js"></script>
+
+    <script src="/Assets/SinhVien/js/main.js"></script>
+    <script>
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+                rightIcon: '<span class="fa fa-caret-down"></span>'
+            }
+        });
+        $('#datepicker2').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+                rightIcon: '<span class="fa fa-caret-down"></span>'
+            }
+
+        });
+    </script>
+
+    @Scripts.Render("~/bunfles/jquery")
+    @Scripts.Render("~/bunfles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+
+</html>

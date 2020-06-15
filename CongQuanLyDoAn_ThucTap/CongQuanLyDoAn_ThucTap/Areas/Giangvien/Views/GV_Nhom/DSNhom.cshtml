@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Model.EF.Nhom_DA_TT>
+
+@{
+    ViewBag.Title = "DSNhom";
+    Layout = "~/Areas/Giangvien/Views/Shared/_Layout.cshtml";
+
+}
+
+<h3>Danh sách hướng dẫn</h3>
+<hr />
+<div style="margin:0 2%">
+    @using (Html.BeginForm("DSNhom", "GV_Nhom", FormMethod.Get))
+    {
+        <div class="row form-group">
+            <div class="col-lg-12">
+                <div class="col-md-4">
+                    <input type="text" value="@ViewBag.SearchString" class="form-control" placeholder="Khóa sinh viên" name="searchString" />
+                    <button type="submit" class="btn btn-success">Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    @if (Model != null)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    Mã sinh viên
+                </th>
+                <th>
+                    Sinh viên
+                </th>
+                <th>
+                    Lớp
+                </th>
+                <th>
+                    SDT
+                </th>
+                <th>
+                    Ngày tạo
+                </th>
+                <th>
+                    Đồ án
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SinhVien.MaSV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SinhVien.TenSV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SinhVien.Lop)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SinhVien.SDT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayPhanNhom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoaiDA.TenLoai)
+                    </td>
+                    <td>
+                        <a href="#">Liên hệ</a>
+                        @*@Html.ActionLink("Liên hệ", "Thanhviennhom", new { id = item.MaNhom })*@
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+    else
+    {
+        <div style="text-align:center; font:bold">
+            Danh sách trống
+        </div>
+    }
+</div>
+
+
+
+
+<style>
+    .table tr th {
+        background-color: dodgerblue;
+        text-align: center;
+    }
+
+    .table tr td {
+        text-align: center;
+    }
+</style>

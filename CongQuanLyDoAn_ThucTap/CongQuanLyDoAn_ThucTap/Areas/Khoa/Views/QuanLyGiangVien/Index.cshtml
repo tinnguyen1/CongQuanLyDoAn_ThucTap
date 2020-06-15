@@ -1,0 +1,135 @@
+﻿@model PagedList.IPagedList<Model.EF.GiangVien>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Quản lý Giảng Viên";
+    Layout = "~/Areas/Khoa/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    Danh sách Giảng viên
+}
+<p>
+    <strong>@Html.ActionLink("Thêm Mới", "ThemMoi")</strong>
+</p>
+
+<div>
+
+    @using (Html.BeginForm("Index", "QuanLyGiangVien", FormMethod.Get))
+    {
+        <div class="row form-group">
+            <div class="col-lg-12">
+                <div class="col-md-4">
+                    <input type="text" value="@ViewBag.SearchString" class="form-control" placeholder="Tên hoặc số điện thoại" name="searchString" />
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-success">Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    }
+    <table class="table table-striped">
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Họ và tên
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th>
+                Giới tính
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Email
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="row_@item.MaGV">
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaGV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenGV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioiTinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    <a href="/Khoa/QuanLyGiangVien/Edit/@item.MaGV">Sửa</a> |
+                    @Ajax.ActionLink("Xóa", "Delete", new { @id = item.MaGV }, new AjaxOptions
+               {
+                   Confirm = "Bạn có muốn xóa Giảng viên này?",
+                   OnComplete = "$('#row_" + @item.MaGV + "').remove()",
+                   HttpMethod = "Delete"
+               })
+                </td>
+            </tr>
+        }
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Họ và tên
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th>
+                Giới tính
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Email
+            </th>
+            <th></th>
+        </tr>
+    </table>
+</div>
+<label>
+    Trang số: @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = @ViewBag.SearchString }))
+</label>
+
+<style>
+    .pagination-container .pagination li a {
+        margin-right: 20px;
+    }
+
+    table tr td {
+        color: black;
+    }
+
+    table tr th {
+        background-color: dodgerblue;
+        color: white;
+    }
+</style>
